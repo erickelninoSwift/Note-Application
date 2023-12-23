@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
-import context from "./context/context";
+import React, { useContext, useEffect } from "react";
+import contextTodo from "./context/context";
 import { useState } from "react";
-
+import { ADD_TODO } from "./context/action.type";
 function Form() {
-  const { todos, dispatch } = useContext(context);
+  const { todos, dispatch } = useContext(contextTodo);
   const [todoNotes, setTodoNotes] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    console.log(todoNotes);
+    if (todoNotes === "") return;
+    dispatch({ type: ADD_TODO, payload: todoNotes });
+    setTodoNotes("");
   };
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
   return (
     <form className="text-center py-6 m-4" onSubmit={handleClick}>
       <input

@@ -3,13 +3,13 @@ import "./App.css";
 import Form from "./components/Form";
 import context from "./components/context/context";
 import TodoReducer from "./components/context/reducer";
-
+import DispalyNotes from "./components/DispalyNotes";
 const initialState = {
   todo: [],
 };
 function App() {
   const [todos, dispatch] = useReducer(TodoReducer, initialState);
-  console.log(useReducer());
+
   return (
     <context.Provider value={{ todos, dispatch }}>
       <>
@@ -19,6 +19,7 @@ function App() {
           </h1>
         </div>
         <Form />
+        <DispalyNotes />
       </>
     </context.Provider>
   );
