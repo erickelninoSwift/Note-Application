@@ -3,15 +3,13 @@ import contextTodo from "./context/context";
 import { ListElement } from "./ListElement";
 
 function DispalyNotes() {
-  const { todos, dispatch } = useContext(contextTodo);
-  const { todo: myNotes } = todos;
-  const handleDelete = () => {
-    console.log("delete element");
-  };
+  const { todos: listTodo } = useContext(contextTodo);
+
   return (
     <div className="grid grid-cols-3 gap-1 m-10">
-      {myNotes.map((data, index) => {
-        return <ListElement key={index} listData={data} idElement={index} />;
+      {listTodo.todo.map((data) => {
+        const { id, myNote } = data;
+        return <ListElement key={id} listData={myNote} idElement={id} />;
       })}
     </div>
   );

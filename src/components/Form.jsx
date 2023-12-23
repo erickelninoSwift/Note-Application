@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import contextTodo from "./context/context";
 import { useState } from "react";
 import { ADD_TODO } from "./context/action.type";
+import { v4 as uuidv4 } from "uuid";
 function Form() {
   const { todos, dispatch } = useContext(contextTodo);
   const [todoNotes, setTodoNotes] = useState("");
@@ -9,7 +10,10 @@ function Form() {
   const handleClick = (e) => {
     e.preventDefault();
     if (todoNotes === "") return;
-    dispatch({ type: ADD_TODO, payload: todoNotes });
+    let myId = uuidv4();
+
+    const newData = { id: myId, myNote: todoNotes };
+    dispatch({ type: ADD_TODO, payload: newData });
     setTodoNotes("");
   };
   useEffect(() => {
