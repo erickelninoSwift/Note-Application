@@ -4,7 +4,9 @@ import { ListElement } from "./ListElement";
 
 function DispalyNotes() {
   const { todos: listTodo } = useContext(contextTodo);
-
+  const handleEditing = (idElement, data) => {
+    console.log(data, idElement);
+  };
   return (
     <div className="grid grid-cols-3 gap-1 m-10">
       {listTodo.todo.map((data) => {

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import contextTodo from "./context/context";
-import { DELETE } from "./context/action.type";
+import { DELETE, EDIT_TODO } from "./context/action.type";
 
 export const ListElement = ({ listData, idElement }) => {
   const { dispatch } = useContext(contextTodo);
@@ -16,7 +16,12 @@ export const ListElement = ({ listData, idElement }) => {
       </button>
       <button
         className="rounded border-2 p-[5px] mt-2"
-        onClick={() => console.log("we editing")}
+        onClick={() =>
+          dispatch({
+            type: EDIT_TODO,
+            payload: { id: idElement, data: listData },
+          })
+        }
       >
         Edit[...]
       </button>
